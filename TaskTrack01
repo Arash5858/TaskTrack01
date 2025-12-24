@@ -1,0 +1,85 @@
+tasktrack/
+│
+├── tasktrack.py
+├── README.md
+└── requirements.txt
+import json
+import os
+
+TASKS_FILE = "tasks.json"
+
+
+def load_tasks():
+    if not os.path.exists(TASKS_FILE):
+        return []
+    with open(TASKS_FILE, "r") as file:
+        return json.load(file)
+
+
+def save_tasks(tasks):
+    with open(TASKS_FILE, "w") as file:
+        json.dump(tasks, file, indent=4)
+
+
+def add_task(title):
+    tasks = load_tasks()
+    tasks.append({"title": title, "completed": False})
+    save_tasks(tasks)
+    print("Task added successfully.")
+
+
+def list_tasks():
+    tasks = load_tasks()
+    if not tasks:
+        print("No tasks found.")
+        return
+
+    for index, task in enumerate(tasks, start=1):
+        status = "Done" if task["completed"] else "Pending"
+        print(f"{index}. {task['title']} [{status}]")
+
+
+def complete_task(index):
+    tasks = load_tasks()
+    try:
+        tasks[index - 1]["completed"] = True
+        save_tasks(tasks)
+        print("Task marked as completed.")
+    except IndexError:
+        print("Invalid task number.")
+
+
+if __name__ == "__main__":
+    print("TaskTrack - Simple CLI Task Manager")
+    print("1. Add Task")
+    print("2. List Tasks")
+    print("3. Complete Task")
+
+    choice = input("Select an option: ")
+
+    if choice == "1":
+        title = input("Enter task title: ")
+        add_task(title)
+    elif choice == "2":
+        list_tasks()
+    elif choice == "3":
+        number = int(input("Enter task number: "))
+        complete_task(number)
+    else:
+        print("Invalid option.")
+# TaskTrack
+
+TaskTrack is a simple command-line task manager written in Python.
+
+## Features
+- Add new tasks
+- List all tasks
+- Mark tasks as completed
+- Persistent storage using JSON
+
+## Requirements
+- Python 3.8+
+
+## Usage
+```bash
+python tasktrack.py
