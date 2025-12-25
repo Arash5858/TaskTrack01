@@ -83,3 +83,9 @@ TaskTrack is a simple command-line task manager written in Python.
 ## Usage
 ```bash
 python tasktrack.py
+
+def load_tasks():
+    if not os.path.exists(TASKS_FILE):
+        return []
+    with open(TASKS_FILE, "r") as file:
+        return json.load(file)
