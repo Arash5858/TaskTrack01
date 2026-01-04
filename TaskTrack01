@@ -61,6 +61,12 @@ if __name__ == "__main__":
     print("2. List Tasks")
     print("3. Complete Task")
 
+def add_task(title):
+    tasks = load_tasks()
+    tasks.append({"title": title, "completed": False})
+    save_tasks(tasks)
+    print("Task added successfully.")
+
     choice = input("Select an option: ")
 
     if choice == "1":
