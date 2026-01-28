@@ -34,6 +34,12 @@ def list_tasks():
         print("No tasks found.")
         return
 
+def load_tasks():
+    if not os.path.exists(TASKS_FILE):
+        return []
+    with open(TASKS_FILE, "r") as file:
+        return json.load(file)
+
     for index, task in enumerate(tasks, start=1):
         status = "Done" if task["completed"] else "Pending"
         print(f"{index}. {task['title']} [{status}]")
