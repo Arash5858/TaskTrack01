@@ -8,12 +8,6 @@ import os
 
 
 
-def load_tasks():
-    if not os.path.exists(TASKS_FILE):
-        return []
-    with open(TASKS_FILE, "r") as file:
-        return json.load(file)
-
 
 def save_tasks(tasks):
     with open(TASKS_FILE, "w") as file:
@@ -43,6 +37,12 @@ def load_tasks():
         status = "Done" if task["completed"] else "Pending"
         print(f"{index}. {task['title']} [{status}]")
 
+
+def load_tasks():
+    if not os.path.exists(TASKS_FILE):
+        return []
+    with open(TASKS_FILE, "r") as file:
+        return json.load(file)
 
 def complete_task(index):
     tasks = load_tasks()
