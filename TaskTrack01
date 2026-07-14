@@ -6,20 +6,15 @@ tasktrack/
 import json
 import os
 
-
-
-
 def save_tasks(tasks):
     with open(TASKS_FILE, "w") as file:
         json.dump(tasks, file, indent=4)
-
 
 def add_task(title):
     tasks = load_tasks()
     tasks.append({"title": title, "completed": False})
     save_tasks(tasks)
     print("Task added successfully.")
-
 
 def list_tasks():
     tasks = load_tasks()
@@ -91,18 +86,9 @@ def add_task(title):
     else:
         print("Invalid option.")
 # TaskTrack
-
 TaskTrack is a simple command-line task manager written in Python.
-
-## Features
-- Add new tasks
-- List all tasks
-- Mark tasks as completed
-- Persistent storage using JSON
-
 ## Requirements
 - Python 3.8+
-
 ## Usage
 ```bash
 python tasktrack.py
