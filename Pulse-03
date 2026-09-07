@@ -1,0 +1,90 @@
+# PulseForge
+
+A lightweight CLI tool for monitoring APIs and services in real time.
+
+PulseForge continuously checks your endpoints, measures response latency, detects failures, and gives you a clear overview of service health directly from your terminal.
+
+## Features
+
+* Monitor multiple URLs
+* HTTP status monitoring
+* Response-time measurement
+* Configurable check intervals
+* Automatic failure detection
+* Clean terminal output
+* Zero external dependencies
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/pulseforge.git
+cd pulseforge
+```
+
+Run:
+
+```bash
+python pulseforge.py
+```
+
+## Usage
+
+```bash
+python pulseforge.py https://example.com https://api.github.com
+```
+
+With a custom interval:
+
+```bash
+python pulseforge.py https://example.com --interval 10
+```
+
+## Example Output
+
+```text
+PulseForge v1.0
+────────────────────────────────────────
+
+✓ https://example.com
+  Status: 200
+  Latency: 142 ms
+
+✓ https://api.github.com
+  Status: 200
+  Latency: 187 ms
+
+✗ https://api.example.com
+  Status: TIMEOUT
+  Latency: 5000+ ms
+
+Next check in 10 seconds...
+```
+
+## Why PulseForge?
+
+Traditional monitoring platforms can be unnecessarily complex for small projects and personal infrastructure.
+
+PulseForge focuses on one thing:
+
+**Know when your services stop responding.**
+
+It is small enough to run anywhere, but structured so it can grow into a more advanced monitoring system.
+
+## Roadmap
+
+* [ ] JSON configuration
+* [ ] Response-body validation
+* [ ] Telegram notifications
+* [ ] Discord notifications
+* [ ] Webhook support
+* [ ] Historical metrics
+* [ ] Docker support
+* [ ] Web dashboard
+* [ ] Prometheus metrics
+
+## License
+
+MIT License
+
